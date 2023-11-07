@@ -3,18 +3,41 @@ import "./App.css";
 import "./index.css";
 import { useState } from "react";
 
+const users = [
+  {
+    userName: 'midudev',
+    name: 'Miguel Ángel Durán',
+    isFollowing: true
+  },
+  {
+    userName: 'pheralb',
+    name: 'Pablo H.',
+    isFollowing: false
+  },
+  {
+    userName: 'PacoHdezs',
+    name: 'Paco Hdez',
+    isFollowing: true
+  },
+  {
+    userName: 'TMChein',
+    name: 'Tomas',
+    isFollowing: false
+  }
+];
+
 export function App() {
-  const [isFollowing, setIsFollowing] = useState(false);
   return (
     <section className="App">
-      <TwitterFollowCard
-        userName='midudev'
-        initialIsFollowing={isFollowing}
-      >
-        <strong>Miguel Ángel Durán</strong>
-      </TwitterFollowCard>
-
-      <button onClick={() => setIsFollowing(!isFollowing)}>Cambiar estado de App</button>
+      {
+        users.map(({ userName, name, isFollowing }) => {
+          return (
+            <TwitterFollowCard key={userName} userName={userName} isFollowing={isFollowing}>
+              {name}
+            </TwitterFollowCard>
+          )
+        })
+      }
     </section>
   );
 }
